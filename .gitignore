@@ -8,3 +8,11 @@ wheels/
 
 # Virtual environments
 .venv
+
+# Base de donnees locale
+db.sqlite3
+
+# Fichiers d'ateliers et de tests locaux
+atelier1.py
+"etude de cas.py"
+example.py
