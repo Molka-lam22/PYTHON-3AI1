@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from EntrepriseApp.models import Entreprise
 from django.core.exceptions import ValidationError
 from django.utils import timezone
 
@@ -20,7 +20,7 @@ class Expedition(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     # Relation avec le modèle Entreprise
-    entreprise = models.ForeignKey('EntreprisesApp.Entreprise', on_delete=models.CASCADE, related_name='expeditions')
+    entreprise = models.ForeignKey(Entreprise, on_delete=models.CASCADE, related_name='expeditions')
 
     def clean(self):
         super().clean()
