@@ -31,8 +31,8 @@ class Utilisateur(AbstractUser):
     email = models.EmailField(unique=True , validators=[validate_email])
     telephone = models.CharField(max_length=15, null=True, blank=True)
     role = models.CharField(max_length=20, choices=[('chargeur', 'Chargeur'), ('transporteur', 'Transporteur'), ('administrateur', 'Administrateur')], default='chargeur')
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 class Entreprise(models.Model):
     raison_sociale = models.CharField(max_length=200, null=False, blank=False)
