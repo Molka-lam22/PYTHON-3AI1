@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinLengthValidator
 from django.core.validators import RegexValidator
 from django.core.exceptions import ValidationError
+import uuid
 
 
 matricule_fiscal_validator = RegexValidator(
@@ -16,15 +17,22 @@ def validate_email(value):
     if not value.endswith('@gmail.com'):
         raise ValidationError("Domaine invalid")
     
+def generate_user_id():
+    from .models import Utilisateur
 
+    while True:
+        user_id = uuid.uuid4().hex[:8]
+
+        if not Utilisateur.objects.filter(user_id=user_id).exists():
+            return user_id
 # Create your models here.
 class Utilisateur(AbstractUser):
-    user_id = models.CharField(max_length=8, primary_key=True, editable=False)
+    user_id = models.CharField(max_length=8, primary_key=True, editable=False,default=generate_user_id)
     email = models.EmailField(unique=True , validators=[validate_email])
     telephone = models.CharField(max_length=15, null=True, blank=True)
     role = models.CharField(max_length=20, choices=[('chargeur', 'Chargeur'), ('transporteur', 'Transporteur'), ('administrateur', 'Administrateur')], default='chargeur')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    # created_at = models.DateTimeField(auto_now_add=True)
+    # updated_at = models.DateTimeField(auto_now=True)
 
 class Entreprise(models.Model):
     raison_sociale = models.CharField(max_length=200, null=False, blank=False)
