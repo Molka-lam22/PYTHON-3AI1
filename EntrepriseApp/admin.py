@@ -18,3 +18,9 @@ class UtilisateurAdmin(admin.ModelAdmin):
     list_filter = ('role', 'is_active', 'is_superuser')
     search_fields = ('user_id', 'username', 'email')
     readonly_fields = ('user_id', 'date_joined', 'last_login', 'created_at', 'updated_at')
+    fieldsets = (
+        ("Informations personnelles", {"fields": ('username', 'email', 'first_name', 'last_name', 'telephone')}),
+        ("Permissions", {"fields": ('role', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+        ("Horodatage", {"fields": ('date_joined', 'last_login', 'created_at', 'updated_at')}),
+
+    )
