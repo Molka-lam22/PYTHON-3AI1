@@ -8,8 +8,12 @@ from .models import Utilisateur
 @admin.register(Entreprise)
 class EntrepriseAdmin(admin.ModelAdmin):
     list_display = ('raison_sociale', 'matricule_fiscale', 'type_entreprise', 'gerant', 'created_at', 'updated_at')
-    list_filter = ('type_entreprise',)
-    search_fields = ('raison_sociale', 'matricule_fiscale', 'gerant__username')
+    list_filter = ('type_entreprise', 'created_at')
+    search_fields = ('raison_sociale', 'matricule_fiscale', 'gerant__username', "gerant_email")
+    list_select_related = ('gerant',)
+    list_editable = ('type_entreprise',)
+    date_hierarchy = 'created_at'
+    list_per_page = 25
     readonly_fields = ('created_at', 'updated_at')
 
 @admin.register(Utilisateur)
