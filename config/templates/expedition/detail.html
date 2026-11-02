@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détail de l'expédition</title>
+</head>
+<body>
+    <h1>Détails de l'expédition</h1>
+    
+    <p><strong>Référence :</strong> {{ expedition.reference }}</p>
+    <p><strong>Trajet :</strong> {{ expedition.ville_depart }} to {{ expedition.ville_arrivee }}</p>
+    <p><strong>Poids :</strong> {{ expedition.poids_kg }} kg</p>
+    <p><strong>Statut :</strong> {{ expedition.get_status_display }}</p>
+    <p><strong>Description :</strong> {{ expedition.description }}</p>
+    <p><strong>Entreprise :</strong> {{ expedition.entreprise }}</p>
+</body>
+</html>

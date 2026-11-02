@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des expéditions</title>
+</head>
+<body>
+    <h1>Liste des expéditions</h1>
+    
+    <ul>
+        {% for expedition in expeditions %}
+            <li>{{ expedition.reference }} - {{ expedition.entreprise }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
